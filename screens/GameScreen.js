@@ -35,7 +35,7 @@ const GameScreen = props => {
     const handleHigherPress = () => {
         if (currentGuess < props.userNumber){
             bottomRange.current = currentGuess + 1
-            guessCount.current += 1
+            guessCount.current = guessCount + 1
             setCurrentGuess(generateRandomBetween(bottomRange, topRange))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
@@ -85,7 +85,7 @@ const GameScreen = props => {
                 <NumberDisplay>{currentGuess}</NumberDisplay>
                 {buttonChoices}
             </Card>
-            <Text>{guessCount}</Text>
+            <Text>{guessCount.current}</Text>
             <Button
                 onPress={tempClear}
                 title="reset"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { View, StyleSheet, Text, Button, Alert } from 'react-native'
 import Card from '../components/Card'
@@ -16,17 +16,17 @@ const generateRandomBetween = (min, max, exclude = 0) => {
 }
 
 const GameScreen = props => {
-    const [bottomRange, setBottomRange] = useState(1)
-    const [topRange, setTopRange] = useState(100)
     const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(bottomRange, topRange, props.userChoice))
 
-    const [guessCount, setGuessCount] = useState(0)
+    const guessCount = useRef(0)
+    const bottomRange = useRef(1)
+    const topRange = useRef(100)
 
     const handleLowerPress = () => {
         if (currentGuess > props.userNumber){
-            setTopRange(currentGuess)
-            setGuessCount(guessCount + 1)
-            setCurrentGuess(generateRandomBetween(bottomRange, currentGuess))
+            topRange.current = currentGuess
+            guessCount.current += 1
+            setCurrentGuess(generateRandomBetween(bottomRange, topRange))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
         }
@@ -34,9 +34,9 @@ const GameScreen = props => {
 
     const handleHigherPress = () => {
         if (currentGuess < props.userNumber){
-            setBottomRange(currentGuess)
-            setGuessCount(guessCount + 1)
-            setCurrentGuess(generateRandomBetween(currentGuess + 1, topRange))
+            bottomRange.current = currentGuess + 1
+            guessCount.current += 1
+            setCurrentGuess(generateRandomBetween(bottomRange, topRange))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
         }

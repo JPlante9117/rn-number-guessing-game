@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     },
     boldNum: {
         fontSize: 100,
-        textAlign: "center"
+        textAlign: "center",
+        color: Colors.accent
     }
 })
 

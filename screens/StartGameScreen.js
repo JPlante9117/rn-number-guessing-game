@@ -48,11 +48,6 @@ const StartGameScreen = props => {
         toggleModal()
     }
 
-    const handleConfirmStart = () => {
-        setConfirmed(false)
-        toggleModal()
-    }
-
     const dismissKeyboard = () => {
         Keyboard.dismiss()
     }
@@ -104,7 +99,7 @@ const StartGameScreen = props => {
                     <ConfirmGameCard
                         selectedNum={selectedNum}
                         handleOnCancelStart={handleCancelStart}
-                        handleOnConfirmStart={handleConfirmStart}
+                        handleOnConfirmStart={props.onStartGame}
                     />
                 </Modal>
             </View>

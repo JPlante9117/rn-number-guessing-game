@@ -12,10 +12,14 @@ export default function App() {
     setUserNumber(selectedNumber)
   }
 
-  let currentScreen = <StartGameScreen />
+  const clearNum = () => {
+    setUserNumber()
+  }
+
+  let currentScreen = <StartGameScreen onStartGame={startGameHandler} />
 
   if (userNumber) {
-    currentScreen = <GameScreen />
+    currentScreen = <GameScreen temp={clearNum} userNumber={userNumber} />
   }
 
   return (

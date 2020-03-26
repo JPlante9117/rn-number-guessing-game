@@ -2,6 +2,7 @@ import React from 'react'
 
 import { View, Text, Button, StyleSheet } from 'react-native'
 import Card from './Card'
+import NumberDisplay from './NumberDisplay'
 import Colors from '../constants/Colors'
 
 const ConfirmGameCard = props => {
@@ -9,7 +10,7 @@ const ConfirmGameCard = props => {
         <View style={styles.wrapper}>
             <Card style={styles.modalContainer}>
                 <Text style={styles.message}>You've chosen </Text>
-                <Text style={styles.boldNum}>{props.selectedNum}</Text>
+                <NumberDisplay>{props.selectedNum}</NumberDisplay>
                 <Text style={styles.message}>Is that correct?</Text>
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
@@ -23,7 +24,7 @@ const ConfirmGameCard = props => {
                         <Button
                             color={Colors.primary}
                             title="Start the Game!"
-                            onPress={props.handleOnConfirmStart}    
+                            onPress={() => props.handleOnConfirmStart(props.selectedNum)}    
                         />
                     </View>
                 </View>
@@ -58,11 +59,6 @@ const styles = StyleSheet.create({
     button: {
         width: '45%'
 
-    },
-    boldNum: {
-        fontSize: 100,
-        textAlign: "center",
-        color: Colors.accent
     }
 })
 

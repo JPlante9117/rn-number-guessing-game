@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
-import { View, StyleSheet, Text, Button } from 'react-native'
+import { View, StyleSheet, Text, Button, Alert } from 'react-native'
 import Card from '../components/Card'
+import NumberDisplay from '../components/NumberDisplay'
 
 const generateRandomBetween = (min, max, exclude = 0) => {
     min = Math.ceil(min)
@@ -21,27 +22,74 @@ const GameScreen = props => {
 
     const [guessCount, setGuessCount] = useState(0)
 
+    const handleLowerPress = () => {
+        if (currentGuess > props.userNumber){
+            setTopRange(currentGuess)
+            setGuessCount(guessCount + 1)
+            setCurrentGuess(generateRandomBetween(bottomRange, currentGuess))
+        } else {
+            Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
+        }
+    }
+
+    const handleHigherPress = () => {
+        if (currentGuess < props.userNumber){
+            setBottomRange(currentGuess)
+            setGuessCount(guessCount + 1)
+            setCurrentGuess(generateRandomBetween(currentGuess + 1, topRange))
+        } else {
+            Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
+        }
+    }
+
+    const tempClear = () => {
+        props.temp()
+    }
+
+    let buttonChoices
+
+    if (currentGuess === props.userNumber) {
+        buttonChoices = (
+            <View style={styles.buttonContainer}>
+                <View style={styles.button}>
+                    <Button
+                        title="Correct!"
+                        onPress={() => {}}
+                    />
+                </View>
+            </View>
+            )
+    } else {
+        buttonChoices = (
+        <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+                <Button
+                    title="LOWER"
+                    onPress={handleLowerPress}
+                />
+            </View>
+            <View style={styles.button}>
+                <Button
+                    title="HIGHER"
+                    onPress={handleHigherPress}
+                />
+            </View>
+        </View>
+        )
+    }
+
     return (
         <View style={styles.screen}>
             <Card style={styles.guessContainer}>
                 <Text>Is your number</Text>
-                <Text>{currentGuess}</Text>
-                <View style={styles.buttonContainer}>
-                    <View style={styles.button}>
-                        <Button
-                            title="LOWER"
-                            onPress={() => {}}
-                        />
-                    </View>
-                    <View style={styles.button}>
-                        <Button
-                            title="HIGHER"
-                            onPress={() => {}}
-                        />
-                    </View>
-                </View>
+                <NumberDisplay>{currentGuess}</NumberDisplay>
+                {buttonChoices}
             </Card>
             <Text>{guessCount}</Text>
+            <Button
+                onPress={tempClear}
+                title="reset"
+            />
         </View>
     )
 }

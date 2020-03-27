@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard, Alert, Modal } from 'react-native'
+import { View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert, Modal } from 'react-native'
 import Card from '../components/Card'
 import Colors from '../constants/Colors'
 import Input from '../components/Input'
 import ConfirmGameCard from '../components/ConfirmGameCard'
+import TitleText from '../components/TitleText'
+import BodyText from '../components/BodyText'
+import ButtonContainer from '../components/ButtonContainer'
 
 const StartGameScreen = props => {
 
@@ -59,15 +62,15 @@ const StartGameScreen = props => {
     let confirmedOutput
 
     if (confirmed){
-        confirmedOutput = <Text>Your Number is {selectedNum}</Text> 
+        confirmedOutput = <BodyText>Your Number is {selectedNum}</BodyText> 
     }
 
     return(
         <TouchableWithoutFeedback onPress={dismissKeyboard}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game!</Text>
+                <TitleText>Start a New Game!</TitleText>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <BodyText>Select a Number</BodyText>
                     <Input
                         style={styles.input}
                         blurOnSubmit
@@ -78,7 +81,7 @@ const StartGameScreen = props => {
                         onChangeText={numberInputHandler}
                         value={enteredValue}
                     />
-                    <View style={styles.buttonContainer}>
+                    <ButtonContainer>
                         <View style={styles.button}>
                             <Button
                                 color={Colors.accent}
@@ -93,7 +96,7 @@ const StartGameScreen = props => {
                                 onPress={handleConfirmPress}    
                             />
                         </View>
-                    </View>
+                    </ButtonContainer>
                 </Card>
                 <Modal visible={modalVis} animationType="slide">
                     <ConfirmGameCard
@@ -114,23 +117,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: 'flex-start'
     },
-    title:{
-        fontSize: 20,
-        marginVertical: 10,
-        fontFamily: 'open-sans-bold'
-
-    }, 
     inputContainer: {
         marginTop: 20,
         width: 300,
         maxWidth: '80%',
         alignItems: 'center'
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-between',
-        padding: 10
     },
     button: {
         width: '40%'

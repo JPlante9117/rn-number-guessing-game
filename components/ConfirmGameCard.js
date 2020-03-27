@@ -1,18 +1,20 @@
 import React from 'react'
 
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
 import Card from './Card'
 import NumberDisplay from './NumberDisplay'
 import Colors from '../constants/Colors'
+import BodyText from './BodyText'
+import ButtonContainer from './ButtonContainer'
 
 const ConfirmGameCard = props => {
     return(
         <View style={styles.wrapper}>
             <Card style={styles.modalContainer}>
-                <Text style={styles.message}>You've chosen </Text>
+                <BodyText>You've chosen </BodyText>
                 <NumberDisplay>{props.selectedNum}</NumberDisplay>
-                <Text style={styles.message}>Is that correct?</Text>
-                <View style={styles.buttonContainer}>
+                <BodyText>Is that correct?</BodyText>
+                <ButtonContainer>
                     <View style={styles.button}>
                         <Button
                             color={Colors.accent}
@@ -27,7 +29,7 @@ const ConfirmGameCard = props => {
                             onPress={() => props.handleOnConfirmStart(props.selectedNum)}    
                         />
                     </View>
-                </View>
+                </ButtonContainer>
             </Card>
         </View>
     )
@@ -40,21 +42,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    message:{
-        fontSize: 20,
-        marginVertical: 10,
-        textAlign: 'center'
-    },  
     modalContainer: {
         marginTop: 20,
         width: 300,
         maxWidth: '80%',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-between',
-        padding: 10
     },
     button: {
         width: '45%'

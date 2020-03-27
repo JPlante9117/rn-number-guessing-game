@@ -3,6 +3,9 @@ import React, { useState, useRef } from 'react'
 import { View, StyleSheet, Text, Button, Alert } from 'react-native'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
+import BodyText from '../components/BodyText'
+import ButtonContainer from '../components/ButtonContainer'
+import Colors from '../constants/Colors'
 
 const generateRandomBetween = (min, max, exclude = 0) => {
     min = Math.ceil(min)
@@ -51,46 +54,51 @@ const GameScreen = props => {
 
     if (currentGuess === props.userNumber) {
         buttonChoices = (
-            <View style={styles.buttonContainer}>
+            <ButtonContainer>
                 <View style={styles.button}>
                     <Button
+                        color="green"
                         title="Correct!"
                         onPress={() => props.onGameOver(guessCount)}
                     />
                 </View>
-            </View>
+            </ButtonContainer>
             )
     } else {
         buttonChoices = (
-        <View style={styles.buttonContainer}>
+        <ButtonContainer>
             <View style={styles.button}>
                 <Button
+                    color={Colors.accent}
                     title="LOWER"
                     onPress={handleLowerPress}
                 />
             </View>
             <View style={styles.button}>
                 <Button
+                    color={Colors.primary}
                     title="HIGHER"
                     onPress={handleHigherPress}
                 />
             </View>
-        </View>
+        </ButtonContainer>
         )
     }
 
     return (
         <View style={styles.screen}>
             <Card style={styles.guessContainer}>
-                <Text>Is your number</Text>
+                <BodyText>Is your number</BodyText>
                 <NumberDisplay>{currentGuess}</NumberDisplay>
                 {buttonChoices}
             </Card>
-            <Text>{guessCount}</Text>
-            <Button
-                onPress={tempClear}
-                title="reset"
-            />
+            <ButtonContainer style={{justifyContent: 'center'}}>
+                <Button
+                    color="gray"
+                    onPress={tempClear}
+                    title="reset"
+                />
+            </ButtonContainer>
         </View>
     )
 }
@@ -100,12 +108,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         alignItems: 'center'
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 20,
-        width: '100%'
     },
     button: {
         width: "40%"

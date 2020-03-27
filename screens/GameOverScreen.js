@@ -1,20 +1,22 @@
 import React from 'react'
 
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Button } from 'react-native'
 import Colors from '../constants/Colors'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
+import BodyText from '../components/BodyText'
+import TitleText from '../components/TitleText'
 
 const GameOverScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text style={styles.headerMessage}>Yes, I did it!</Text>
+            <TitleText style={{marginVertical: 0, color: Colors.primary}}>Yes, I did it!</TitleText>
             <Card style={styles.messageContainer}>
-                <Text>Your number is</Text>
+                <BodyText>Your number is</BodyText>
                 <NumberDisplay>{props.userNumber}</NumberDisplay>
             </Card>
             <Card style={styles.messageContainer}>
-                <Text>It took</Text><NumberDisplay style={styles.guessCount}>{props.roundCount}</NumberDisplay><Text>guesses to get there!</Text>
+                <BodyText>It took</BodyText><NumberDisplay style={styles.guessCount}>{props.roundCount}</NumberDisplay><BodyText>guesses to get there!</BodyText>
             </Card>
             <View style={styles.buttonContainer}>
                 <Button 
@@ -39,11 +41,6 @@ const styles = StyleSheet.create({
         width: 300,
         maxWidth: '80%',
         alignItems: 'center'
-    },
-    headerMessage: {
-        fontSize: 45,
-        fontWeight: "bold",
-        color: Colors.primary
     },
     guessCount: {
         fontSize: 70,

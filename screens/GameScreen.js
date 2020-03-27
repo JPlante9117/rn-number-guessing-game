@@ -46,15 +46,15 @@ const GameScreen = props => {
         }
     }
 
-    const tempClear = () => {
-        props.temp()
+    const resetGame = () => {
+        props.reset()
     }
 
     let buttonChoices
 
     if (currentGuess === props.userNumber) {
         buttonChoices = (
-            <ButtonContainer>
+            <ButtonContainer style={{justifyContent: 'center'}}>
                 <View style={styles.button}>
                     <Button
                         color={Colors.confirmation}
@@ -95,7 +95,7 @@ const GameScreen = props => {
             <ButtonContainer style={{justifyContent: 'center'}}>
                 <Button
                     color="gray"
-                    onPress={tempClear}
+                    onPress={resetGame}
                     title="reset"
                 />
             </ButtonContainer>

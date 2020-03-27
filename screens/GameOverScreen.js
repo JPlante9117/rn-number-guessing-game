@@ -3,20 +3,26 @@ import React from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import Colors from '../constants/Colors'
 import Card from '../components/Card'
+import NumberDisplay from '../components/NumberDisplay'
 
 const GameOverScreen = props => {
     return(
         <View style={styles.screen}>
             <Text style={styles.headerMessage}>Yes, I did it!</Text>
             <Card style={styles.messageContainer}>
-                    <Text>Your number is {props.userNumber}!</Text>
-                    <Text>It took {props.roundCount} guesses to get there, but I finally did!</Text>
-                    <Button 
-                        color={Colors.primary}
-                        title="Play Again"
-                        onPress={props.resetGame}
-                    />
+                <Text>Your number is</Text>
+                <NumberDisplay>{props.userNumber}</NumberDisplay>
             </Card>
+            <Card style={styles.messageContainer}>
+                <Text>It took</Text><NumberDisplay style={styles.guessCount}>{props.roundCount}</NumberDisplay><Text>guesses to get there!</Text>
+            </Card>
+            <View style={styles.buttonContainer}>
+                <Button 
+                    color={Colors.primary}
+                    title="Play Again"
+                    onPress={props.resetGame}
+                />
+            </View>
         </View>
     )
 }
@@ -36,7 +42,15 @@ const styles = StyleSheet.create({
     },
     headerMessage: {
         fontSize: 45,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: Colors.primary
+    },
+    guessCount: {
+        fontSize: 70,
+        color: Colors.accent
+    },
+    buttonContainer: {
+        padding: 10
     }
 })
 

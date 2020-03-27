@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native'
 import Colors from '../constants/Colors'
 
 const NumberDisplay = props => {
-    return <Text style={styles.boldNum}>{props.children}</Text>
+    return <Text style={{...styles.boldNum, ...props.style}}>{props.children}</Text>
 }
 
 const styles = StyleSheet.create({

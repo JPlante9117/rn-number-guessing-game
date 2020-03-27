@@ -57,7 +57,7 @@ const GameScreen = props => {
             <ButtonContainer>
                 <View style={styles.button}>
                     <Button
-                        color="green"
+                        color={Colors.confirmation}
                         title="Correct!"
                         onPress={() => props.onGameOver(guessCount)}
                     />
@@ -69,7 +69,7 @@ const GameScreen = props => {
         <ButtonContainer>
             <View style={styles.button}>
                 <Button
-                    color={Colors.accent}
+                    color={Colors.cool}
                     title="LOWER"
                     onPress={handleLowerPress}
                 />

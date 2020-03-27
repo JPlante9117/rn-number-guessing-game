@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { View, StyleSheet, Text, Button, Alert } from 'react-native'
 import Card from '../components/Card'
@@ -17,22 +17,16 @@ const generateRandomBetween = (min, max, exclude = 0) => {
 
 const GameScreen = props => {
 
-    const guessCount = useRef(0)
+    const [guessCount, setGuessCount] = useState(1)
     const bottomRange = useRef(1)
     const topRange = useRef(100)
 
     const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(bottomRange.current, topRange.current, props.userChoice))
 
-    useEffect(() => {
-        if (currentGuess === props.userNumber){
-
-        }
-    })
-
     const handleLowerPress = () => {
         if (currentGuess > props.userNumber){
             topRange.current = currentGuess
-            guessCount.current = guessCount.current + 1
+            setGuessCount(guessCount + 1)
             setCurrentGuess(generateRandomBetween(bottomRange.current, topRange.current))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
@@ -42,7 +36,7 @@ const GameScreen = props => {
     const handleHigherPress = () => {
         if (currentGuess < props.userNumber){
             bottomRange.current = currentGuess + 1
-            guessCount.current = guessCount.current + 1
+            setGuessCount(guessCount + 1)
             setCurrentGuess(generateRandomBetween(bottomRange.current, topRange.current))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
@@ -61,7 +55,7 @@ const GameScreen = props => {
                 <View style={styles.button}>
                     <Button
                         title="Correct!"
-                        onPress={() => {}}
+                        onPress={() => props.onGameOver(guessCount)}
                     />
                 </View>
             </View>
@@ -92,7 +86,7 @@ const GameScreen = props => {
                 <NumberDisplay>{currentGuess}</NumberDisplay>
                 {buttonChoices}
             </Card>
-            <Text>{guessCount.current}</Text>
+            <Text>{guessCount}</Text>
             <Button
                 onPress={tempClear}
                 title="reset"

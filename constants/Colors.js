@@ -1,5 +1,6 @@
 export default {
     primary: '#f7287b',
     accent: '#fb9dc3',
-    input: ''
+    cool: '#99ccff',
+    confirmation: '#66ff66'
 }

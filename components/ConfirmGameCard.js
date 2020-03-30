@@ -6,6 +6,7 @@ import NumberDisplay from './NumberDisplay'
 import Colors from '../constants/Colors'
 import BodyText from './BodyText'
 import ButtonContainer from './ButtonContainer'
+import MainButton from './MainButton'
 
 const ConfirmGameCard = props => {
     return(
@@ -16,18 +17,14 @@ const ConfirmGameCard = props => {
                 <BodyText>Is that correct?</BodyText>
                 <ButtonContainer>
                     <View style={styles.button}>
-                        <Button
-                            color={Colors.accent}
-                            title="I Changed My Mind!"
-                            onPress={props.handleOnCancelStart}
-                        />
+                        <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={props.handleOnCancelStart}>
+                            Nope!
+                        </MainButton>
                     </View>
                     <View style={styles.button}>
-                        <Button
-                            color={Colors.primary}
-                            title="Start the Game!"
-                            onPress={() => props.handleOnConfirmStart(props.selectedNum)}    
-                        />
+                        <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={() => props.handleOnConfirmStart(props.selectedNum)}>
+                            Yep!
+                        </MainButton>
                     </View>
                 </ButtonContainer>
             </Card>

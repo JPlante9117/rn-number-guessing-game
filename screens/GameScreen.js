@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 
 import { View, StyleSheet, Alert } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
 import BodyText from '../components/BodyText'
@@ -57,8 +58,8 @@ const GameScreen = props => {
         buttonChoices = (
             <ButtonContainer style={{justifyContent: 'center'}}>
                 <View style={styles.button}>
-                    <MainButton style={{backgroundColor: Colors.confirmation}} handleOnPress={() => props.onGameOver(guessCount)} >
-                        Correct!
+                    <MainButton style={{backgroundColor: 'transparent'}} handleOnPress={() => props.onGameOver(guessCount)} >
+                        <AntDesign name="checkcircleo" color={Colors.confirmation} size={50} />
                     </MainButton>
                 </View>
             </ButtonContainer>
@@ -66,11 +67,11 @@ const GameScreen = props => {
     } else {
         buttonChoices = (
         <ButtonContainer>
-            <MainButton style={{backgroundColor: Colors.cool}} handleOnPress={handleLowerPress} >
-                Lower!
+            <MainButton style={{backgroundColor: 'transparent'}} handleOnPress={handleLowerPress} >
+                <AntDesign name="minuscircleo" size={50} color={Colors.cool} />
             </MainButton>
-            <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleHigherPress} >
-                Higher!
+            <MainButton style={{backgroundColor: 'transparent'}} handleOnPress={handleHigherPress} >
+                <AntDesign name="pluscircleo" size={50} color={Colors.primary} />
             </MainButton>
         </ButtonContainer>
         )

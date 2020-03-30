@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert, Modal } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal } from 'react-native'
 import Card from '../components/Card'
 import Colors from '../constants/Colors'
 import Input from '../components/Input'
@@ -7,6 +7,7 @@ import ConfirmGameCard from '../components/ConfirmGameCard'
 import TitleText from '../components/TitleText'
 import BodyText from '../components/BodyText'
 import ButtonContainer from '../components/ButtonContainer'
+import MainButton from '../components/MainButton'
 
 const StartGameScreen = props => {
 
@@ -83,18 +84,14 @@ const StartGameScreen = props => {
                     />
                     <ButtonContainer>
                         <View style={styles.button}>
-                            <Button
-                                color={Colors.accent}
-                                title="Reset"
-                                onPress={handleResetPress}
-                            />
+                            <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={handleResetPress}>
+                                Reset
+                            </MainButton>
                         </View>
                         <View style={styles.button}>
-                            <Button
-                                color={Colors.primary}
-                                title="Confirm"
-                                onPress={handleConfirmPress}    
-                            />
+                            <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleConfirmPress}>
+                                Confirm
+                            </MainButton>
                         </View>
                     </ButtonContainer>
                 </Card>

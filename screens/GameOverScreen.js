@@ -13,9 +13,13 @@ const GameOverScreen = props => {
     return(
         <ViewPager style={styles.screen}>
             <View key="1" style={styles.insetScreen}>
-                    <TitleText style={{marginVertical: 0, color: Colors.primary}}>Yes, I did it!</TitleText>
+                    <TitleText style={{marginVertical: 0, color: Colors.primary}}>Hooray!</TitleText>
                     <View style={styles.imageContainer}>
-                        <Image style={styles.image} source={require('../assets/success.png')} resizeMode="cover" />
+                        <Image
+                            style={styles.image}
+                            source={require('../assets/success.png')}
+                            resizeMode="cover"
+                        />
                     </View>
                     <BodyText>Swipe right for details</BodyText>
                     <View style={styles.buttonContainer}>
@@ -28,19 +32,12 @@ const GameOverScreen = props => {
             </View>
             <View key="2" style={styles.insetScreen}>
                     <Card style={styles.messageContainer}>
-                        <BodyText>Your number is</BodyText>
+                        <BodyText>Your number was</BodyText>
                         <NumberDisplay>{props.userNumber}</NumberDisplay>
                     </Card>
                     <Card style={styles.messageContainer}>
-                        <BodyText>It took</BodyText><NumberDisplay style={styles.guessCount}>{props.roundCount}</NumberDisplay><BodyText>guesses to get there!</BodyText>
+                        <BodyText>It took</BodyText><NumberDisplay>{props.roundCount}</NumberDisplay><BodyText>guesses to get there!</BodyText>
                     </Card>
-                    <View style={styles.buttonContainer}>
-                        <Button 
-                            color={Colors.primary}
-                            title="Play Again"
-                            onPress={props.resetGame}
-                        />
-                    </View>
             </View>
         </ViewPager>
     )
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
         height: 300,
         borderRadius: 150,
         borderWidth: 3,
-        borderColor: 'black',
+        borderColor: Colors.cool,
         overflow:'hidden',
         marginVertical: 10
     }

@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         backgroundColor: Colors.primary,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 100
     },
     headerTitle: {
         color: 'white',

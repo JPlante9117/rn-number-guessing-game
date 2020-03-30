@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyleSheet, View, Button, Image, ScrollView } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import Colors from '../constants/Colors'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
@@ -8,6 +8,7 @@ import BodyText from '../components/BodyText'
 import TitleText from '../components/TitleText'
 
 import ViewPager from '@react-native-community/viewpager'
+import MainButton from '../components/MainButton'
 
 const GameOverScreen = props => {
     return(
@@ -23,11 +24,9 @@ const GameOverScreen = props => {
                     </View>
                     <BodyText>Swipe right for details</BodyText>
                     <View style={styles.buttonContainer}>
-                        <Button 
-                            color={Colors.primary}
-                            title="Play Again"
-                            onPress={props.resetGame}
-                        />
+                        <MainButton style={{backgroundColor: Colors.primary, width: "100%"}} handleOnPress={props.resetGame}>
+                            Play Again
+                        </MainButton>
                     </View>
             </View>
             <View key="2" style={styles.insetScreen}>
@@ -50,7 +49,8 @@ const styles = StyleSheet.create({
     insetScreen: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10
+        padding: 10,
+        width: '100%'
     },
     messageContainer: {
         marginTop: 20,
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
         color: Colors.accent
     },
     buttonContainer: {
-        padding: 10
+        padding: 10,
+        width: '100%'
     },
     image: {
         width: '100%',

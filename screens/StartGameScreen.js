@@ -83,16 +83,12 @@ const StartGameScreen = props => {
                         value={enteredValue}
                     />
                     <ButtonContainer>
-                        <View style={styles.button}>
-                            <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={handleResetPress}>
-                                Reset
-                            </MainButton>
-                        </View>
-                        <View style={styles.button}>
-                            <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleConfirmPress}>
-                                Confirm
-                            </MainButton>
-                        </View>
+                        <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={handleResetPress}>
+                            Reset
+                        </MainButton>
+                        <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleConfirmPress}>
+                            Confirm
+                        </MainButton>
                     </ButtonContainer>
                 </Card>
                 <Modal visible={modalVis} animationType="slide">
@@ -119,10 +115,6 @@ const styles = StyleSheet.create({
         width: 300,
         maxWidth: '80%',
         alignItems: 'center'
-    },
-    button: {
-        width: '40%'
-
     },
     input: {
         width: '20%',

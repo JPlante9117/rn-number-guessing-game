@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react'
 
-import { View, StyleSheet, Text, Button, Alert } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
 import BodyText from '../components/BodyText'
 import ButtonContainer from '../components/ButtonContainer'
 import Colors from '../constants/Colors'
+import MainButton from '../components/MainButton'
 
 const generateRandomBetween = (min, max, exclude = 0) => {
     min = Math.ceil(min)
@@ -56,31 +57,21 @@ const GameScreen = props => {
         buttonChoices = (
             <ButtonContainer style={{justifyContent: 'center'}}>
                 <View style={styles.button}>
-                    <Button
-                        color={Colors.confirmation}
-                        title="Correct!"
-                        onPress={() => props.onGameOver(guessCount)}
-                    />
+                    <MainButton style={{backgroundColor: Colors.confirmation}} handleOnPress={() => props.onGameOver(guessCount)} >
+                        Correct!
+                    </MainButton>
                 </View>
             </ButtonContainer>
             )
     } else {
         buttonChoices = (
         <ButtonContainer>
-            <View style={styles.button}>
-                <Button
-                    color={Colors.cool}
-                    title="LOWER"
-                    onPress={handleLowerPress}
-                />
-            </View>
-            <View style={styles.button}>
-                <Button
-                    color={Colors.primary}
-                    title="HIGHER"
-                    onPress={handleHigherPress}
-                />
-            </View>
+            <MainButton style={{backgroundColor: Colors.cool}} handleOnPress={handleLowerPress} >
+                Lower!
+            </MainButton>
+            <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleHigherPress} >
+                Higher!
+            </MainButton>
         </ButtonContainer>
         )
     }
@@ -93,11 +84,9 @@ const GameScreen = props => {
                 {buttonChoices}
             </Card>
             <ButtonContainer style={{justifyContent: 'center'}}>
-                <Button
-                    color="gray"
-                    onPress={resetGame}
-                    title="reset"
-                />
+                <MainButton style={{backgroundColor: Colors.grayscale}} handleOnPress={resetGame}>
+                    RESET
+                </MainButton>
             </ButtonContainer>
         </View>
     )
@@ -108,9 +97,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         alignItems: 'center'
-    },
-    button: {
-        width: "40%"
     },
     guessContainer: {
         marginTop: 20,

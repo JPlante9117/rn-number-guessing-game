@@ -25,7 +25,7 @@ const GameOverScreen = props => {
                     </View>
                     <View style={styles.detailsContainer}>
                         <BodyText style={styles.detailsText}>Swipe right for details</BodyText>
-                        <AntDesign name="doubleright" size={40} color={Colors.grayscale} />
+                        <AntDesign name="doubleright" size={40} color={Colors.cool} />
                     </View>
                     <View style={styles.buttonContainer}>
                         <MainButton style={{backgroundColor: Colors.primary, width: "100%"}} handleOnPress={props.resetGame}>
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     detailsText: {
         height: '100%',
         textAlignVertical: 'center',
+        marginRight: 5
     }
 
 })

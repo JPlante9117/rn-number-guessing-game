@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { View, StyleSheet, Alert, ScrollView } from 'react-native'
+import { View, StyleSheet, Alert, ScrollView, FlatList } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
@@ -94,9 +94,12 @@ const GameScreen = props => {
                     RESET
                 </MainButton>
             </ButtonContainer>
-            <ScrollView>
-                {pastGuesses.map(guess => <View><NumberDisplay>{guess}</NumberDisplay></View>)}
-            </ScrollView>
+            <View style={styles.listContainer}>
+                <BodyText>Past Guesses</BodyText>
+                <ScrollView contentContainerStyle={styles.list}>
+                    {pastGuesses.map(guess => <View style={styles.listItem}><NumberDisplay style={{fontSize: 60}}>{guess}</NumberDisplay></View>)}
+                </ScrollView>
+            </View>
         </View>
     )
 }
@@ -112,7 +115,21 @@ const styles = StyleSheet.create({
         width: 300,
         maxWidth: '80%',
         alignItems: 'center'
+    },
+    listContainer: {
+        flex: 1,
+        width: '80%'
+    },
+    list: {
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    listItem: {
+        marginVertical: 10
     }
+
+
 })
 
 export default GameScreen

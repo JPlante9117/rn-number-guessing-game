@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { View, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
@@ -22,7 +22,7 @@ const generateRandomBetween = (min, max, exclude = 0) => {
 
 const GameScreen = props => {
 
-    const [guessCount, setGuessCount] = useState(1)
+    const [pastGuesses, setPastGuesses] = useState([])
     const bottomRange = useRef(1)
     const topRange = useRef(100)
 
@@ -31,7 +31,7 @@ const GameScreen = props => {
     const handleLowerPress = () => {
         if (currentGuess > props.userNumber){
             topRange.current = currentGuess
-            setGuessCount(guessCount + 1)
+            setPastGuesses(curPastGuesses => [currentGuess, ...curPastGuesses])
             setCurrentGuess(generateRandomBetween(bottomRange.current, topRange.current))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
@@ -41,11 +41,16 @@ const GameScreen = props => {
     const handleHigherPress = () => {
         if (currentGuess < props.userNumber){
             bottomRange.current = currentGuess + 1
-            setGuessCount(guessCount + 1)
+            setPastGuesses(curPastGuesses => [currentGuess, ...curPastGuesses])
             setCurrentGuess(generateRandomBetween(bottomRange.current, topRange.current))
         } else {
             Alert.alert('Don\'t lie!', 'Make sure you\'re honest here...', [{text: 'Sorry!', style: 'cancel'}])
         }
+    }
+
+    const handleCorrectPress = () => {
+        setPastGuesses(curPastGuesses => [currentGuess, ...curPastGuesses])
+        props.onGameOver(pastGuesses)
     }
 
     const resetGame = () => {
@@ -58,7 +63,7 @@ const GameScreen = props => {
         buttonChoices = (
             <ButtonContainer style={{justifyContent: 'center'}}>
                 <View style={styles.button}>
-                    <MainButton style={{backgroundColor: 'transparent'}} handleOnPress={() => props.onGameOver(guessCount)} >
+                    <MainButton style={{backgroundColor: 'transparent'}} handleOnPress={handleCorrectPress} >
                         <AntDesign name="checkcircleo" color={Colors.confirmation} size={50} />
                     </MainButton>
                 </View>
@@ -89,6 +94,9 @@ const GameScreen = props => {
                     RESET
                 </MainButton>
             </ButtonContainer>
+            <ScrollView>
+                {pastGuesses.map(guess => <View><NumberDisplay>{guess}</NumberDisplay></View>)}
+            </ScrollView>
         </View>
     )
 }

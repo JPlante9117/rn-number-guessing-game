@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { StyleSheet, View, Image } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
@@ -22,7 +23,9 @@ const GameOverScreen = props => {
                             resizeMode="cover"
                         />
                     </View>
-                    <BodyText>Swipe right for details</BodyText>
+                    <View style={styles.detailsContainer}>
+                        <BodyText>Swipe right for details <AntDesign name="doubleright" size={40} color={Colors.grayscale} /></BodyText>
+                    </View>
                     <View style={styles.buttonContainer}>
                         <MainButton style={{backgroundColor: Colors.primary, width: "100%"}} handleOnPress={props.resetGame}>
                             Play Again
@@ -35,7 +38,7 @@ const GameOverScreen = props => {
                         <NumberDisplay>{props.userNumber}</NumberDisplay>
                     </Card>
                     <Card style={styles.messageContainer}>
-                        <BodyText>It took</BodyText><NumberDisplay>{props.roundCount}</NumberDisplay><BodyText>guesses to get there!</BodyText>
+                        <BodyText>It took</BodyText><NumberDisplay>{props.guesses.length}</NumberDisplay><BodyText>guesses to get there!</BodyText>
                     </Card>
             </View>
         </ViewPager>

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: Dimensions.get('window').height > 3500 ? 30 : 10,
         justifyContent: 'space-around',
+        alignItems: 'center',
         padding: 5
     },
 })

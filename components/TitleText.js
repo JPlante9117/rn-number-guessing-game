@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'open-sans-bold',
         fontSize: 30,
-        marginVertical: 10,
+        marginVertical: 5,
         textAlign: 'center'
     }
 })

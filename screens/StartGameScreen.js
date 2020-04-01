@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal, Dimensions } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
 import Card from '../components/Card'
 import Colors from '../constants/Colors'
 import Input from '../components/Input'
@@ -67,39 +67,43 @@ const StartGameScreen = props => {
     }
 
     return(
-        <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <View style={styles.screen}>
-                <TitleText>Start a New Game!</TitleText>
-                <Card style={styles.inputContainer}>
-                    <BodyText>Select a Number</BodyText>
-                    <Input
-                        style={styles.input}
-                        blurOnSubmit
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        keyboardType='numeric'
-                        maxLength={2}
-                        onChangeText={numberInputHandler}
-                        value={enteredValue}
-                    />
-                    <ButtonContainer>
-                        <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={handleResetPress}>
-                            Reset
-                        </MainButton>
-                        <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleConfirmPress}>
-                            Confirm
-                        </MainButton>
-                    </ButtonContainer>
-                </Card>
-                <Modal visible={modalVis} animationType="slide">
-                    <ConfirmGameCard
-                        selectedNum={selectedNum}
-                        handleOnCancelStart={handleCancelStart}
-                        handleOnConfirmStart={props.onStartGame}
-                    />
-                </Modal>
-            </View>
-        </TouchableWithoutFeedback>
+        <ScrollView>
+            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={30}>
+                <TouchableWithoutFeedback onPress={dismissKeyboard}>
+                    <View style={styles.screen}>
+                        <TitleText>Start a New Game!</TitleText>
+                        <Card style={styles.inputContainer}>
+                            <BodyText>Select a Number</BodyText>
+                            <Input
+                                style={styles.input}
+                                blurOnSubmit
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                keyboardType='numeric'
+                                maxLength={2}
+                                onChangeText={numberInputHandler}
+                                value={enteredValue}
+                            />
+                            <ButtonContainer>
+                                <MainButton style={{backgroundColor: Colors.accent}} handleOnPress={handleResetPress}>
+                                    Reset
+                                </MainButton>
+                                <MainButton style={{backgroundColor: Colors.primary}} handleOnPress={handleConfirmPress}>
+                                    Confirm
+                                </MainButton>
+                            </ButtonContainer>
+                        </Card>
+                        <Modal visible={modalVis} animationType="slide">
+                            <ConfirmGameCard
+                                selectedNum={selectedNum}
+                                handleOnCancelStart={handleCancelStart}
+                                handleOnConfirmStart={props.onStartGame}
+                            />
+                        </Modal>
+                    </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 

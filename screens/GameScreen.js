@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import { View, StyleSheet, Alert, ScrollView, FlatList } from 'react-native'
+import { View, StyleSheet, Alert, ScrollView, FlatList, Dimensions } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import Card from '../components/Card'
 import NumberDisplay from '../components/NumberDisplay'
@@ -57,6 +57,12 @@ const GameScreen = props => {
         props.reset()
     }
 
+    let guessFontSize = styles.guessFontBig
+
+    if (Dimensions.get('window').width < 350){
+        guessFontSize = styles.guessFontSmall
+    }
+
     let buttonChoices
 
     if (currentGuess === props.userNumber) {
@@ -97,7 +103,7 @@ const GameScreen = props => {
             <View style={styles.listContainer}>
                 <BodyText>Past Guesses</BodyText>
                 <ScrollView contentContainerStyle={styles.list}>
-                    {pastGuesses.map(guess => <View style={styles.listItem}><NumberDisplay style={{fontSize: 60}}>{guess}</NumberDisplay></View>)}
+                    {pastGuesses.map(guess => <View style={styles.listItem} key={guess}><NumberDisplay style={guessFontSize}>{guess}</NumberDisplay></View>)}
                 </ScrollView>
             </View>
         </View>
@@ -111,14 +117,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     guessContainer: {
-        marginTop: 20,
+        marginTop: Dimensions.get('window').height > 600 ? 15 : 0,
         width: 300,
         maxWidth: '80%',
         alignItems: 'center'
     },
     listContainer: {
         flex: 1,
-        width: '80%'
+        width: Dimensions.get('window').width > 350 ? '60%' : '80%'
     },
     list: {
         flexGrow: 1,
@@ -126,7 +132,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     listItem: {
-        marginVertical: 10
+        marginVertical: Dimensions.get('window').height > 600 ? 5 : 0
+    },
+    guessFontBig: {
+        fontSize: 50
+    },
+    guessFontSmall: {
+        fontSize: 30
     }
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Text, Dimensions } from 'react-native'
 import Colors from '../constants/Colors'
 
 const MainButton = props => {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         color: Colors.primary,
         padding: 10,
         borderRadius: 30,
-        width: 100
+        width: Dimensions.get('window').width / 4
     },
     buttonText: {
         color: 'white',

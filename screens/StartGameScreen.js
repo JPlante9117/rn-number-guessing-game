@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert, Modal, Dimensions } from 'react-native'
 import Card from '../components/Card'
 import Colors from '../constants/Colors'
 import Input from '../components/Input'
@@ -112,8 +112,9 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginTop: 20,
-        width: 300,
-        maxWidth: '80%',
+        width: '80%',
+        maxWidth: '90%',
+        minWidth: 300,
         alignItems: 'center'
     },
     input: {

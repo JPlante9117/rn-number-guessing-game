@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         marginTop: Dimensions.get('window').height > 3500 ? 30 : 10,
-        justifyContent: 'space-between'
+        justifyContent: 'space-around',
+        padding: 5
     },
 })
 

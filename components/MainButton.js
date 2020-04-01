@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontFamily: 'open-sans',
-        fontSize: 18,
+        fontSize: Dimensions.get('window').width > 350 ? 18 : 14,
         width: '100%',
         textAlign: 'center'
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyleSheet, View, Image, ScrollView, Dimensions } from 'react-native'
+import { StyleSheet, View, Image, ScrollView, Dimensions, SafeAreaView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import Card from '../components/Card'

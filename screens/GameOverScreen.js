@@ -21,54 +21,60 @@ const GameOverScreen = props => {
         numberSize = 60
     }
 
+    
+
     return(
         <ViewPager style={styles.screen}>
+            <ScrollView>
             <View key="1" style={styles.insetScreen}>
-                        <TitleText style={{marginVertical: 0, color: Colors.primary}}>Hooray!</TitleText>
-                        <View style={styles.imageContainer}>
-                            <Image
-                                style={styles.image}
-                                source={require('../assets/success.png')}
-                                resizeMode="cover"
-                            />
-                        </View>
-                        <View style={styles.detailsContainer}>
-                            <BodyText style={styles.detailsText}>Swipe Right for Details</BodyText>
-                            <AntDesign name="doubleright" size={chevronSize} color={Colors.cool} />
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <MainButton style={{backgroundColor: Colors.primary, width: "100%"}} handleOnPress={props.resetGame}>
-                                Play Again
-                            </MainButton>
-                        </View>
-            </View>
-            <View key="2" style={styles.insetScreen}>
-                    <Card style={styles.messageContainer}>
-                        <BodyText>Your number was</BodyText>
-                        <NumberDisplay style={{fontSize: numberSize}}>{props.userNumber}</NumberDisplay>
-                    </Card>
-                    <Card style={styles.messageContainer}>
-                        <BodyText>It took</BodyText><NumberDisplay style={{fontSize: numberSize}}>{props.guesses.length + 1}</NumberDisplay><BodyText>guesses to get there!</BodyText>
-                    </Card>
-                    <View style={{...styles.detailsContainer, justifyContent: 'space-between'}}>
-                        <View style={{margin: 10}}>
-                            <AntDesign name="doubleleft" size={chevronSize} color={Colors.cool} />
-                        </View>
-                        <View style={{margin: 10}}>
-                            <AntDesign name="doubleright" size={chevronSize} color={Colors.cool} />
-                        </View>
-                    </View>
-            </View>
-            <View key="3" style={styles.insetScreen}>
-                <TitleText>Guesses:</TitleText>
-                <ScrollView style={{width: '100%'}}>
-                    {props.guesses.reverse().map((guess, idx) => <View key={idx + 1}><NumberDisplay style={{fontSize: numberSize}}>{guess}</NumberDisplay></View>)}
-                    <View><NumberDisplay style={{fontSize: numberSize, color: Colors.primary}}>{props.userNumber}</NumberDisplay></View>
-                </ScrollView>
+                <TitleText style={{marginVertical: 0, color: Colors.primary}}>Hooray!</TitleText>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.image}
+                        source={require('../assets/success.png')}
+                        resizeMode="cover"
+                    />
+                </View>
                 <View style={styles.detailsContainer}>
-                    <AntDesign name="doubleleft" size={chevronSize} color={Colors.cool} />
+                    <BodyText style={styles.detailsText}>Swipe Right for Details</BodyText>
+                    <AntDesign name="doubleright" size={chevronSize} color={Colors.cool} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <MainButton style={{backgroundColor: Colors.primary, width: "100%"}} handleOnPress={props.resetGame}>
+                        Play Again
+                    </MainButton>
                 </View>
             </View>
+            </ScrollView>
+            <ScrollView>
+                <View key="2" style={styles.insetScreen}>
+                        <Card style={styles.messageContainer}>
+                            <BodyText>Your number was</BodyText>
+                            <NumberDisplay style={{fontSize: numberSize}}>{props.userNumber}</NumberDisplay>
+                        </Card>
+                        <Card style={styles.messageContainer}>
+                            <BodyText>It took</BodyText><NumberDisplay style={{fontSize: numberSize}}>{props.guesses.length + 1}</NumberDisplay><BodyText>guesses to get there!</BodyText>
+                        </Card>
+                        <View style={{...styles.detailsContainer, justifyContent: 'space-between'}}>
+                            <View style={{margin: 10}}>
+                                <AntDesign name="doubleleft" size={chevronSize} color={Colors.cool} />
+                            </View>
+                            <View style={{margin: 10}}>
+                                <AntDesign name="doubleright" size={chevronSize} color={Colors.cool} />
+                            </View>
+                        </View>
+                </View>
+            </ScrollView>
+                <View key="3" style={styles.insetScreen}>
+                    <TitleText>Guesses:</TitleText>
+                    <ScrollView style={{width: '100%'}}>
+                        {props.guesses.reverse().map((guess, idx) => <View key={idx + 1}><NumberDisplay style={{fontSize: numberSize}}>{guess}</NumberDisplay></View>)}
+                        <View><NumberDisplay style={{fontSize: numberSize, color: Colors.primary}}>{props.userNumber}</NumberDisplay></View>
+                    </ScrollView>
+                    <View style={styles.detailsContainer}>
+                        <AntDesign name="doubleleft" size={chevronSize} color={Colors.cool} />
+                    </View>
+                </View>
         </ViewPager>
     )
 }
